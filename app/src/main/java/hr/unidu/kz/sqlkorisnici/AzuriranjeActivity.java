@@ -116,8 +116,11 @@ public class AzuriranjeActivity extends AppCompatActivity {
         KorisniciHelper databaseHelper = new KorisniciHelper(con);
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
         TextView id = findViewById(R.id.id);
-        // pomoću metode rawQuery.
-        // Kada se tablice vežu, onda se mora koristiti ovaj pristup!
+        // Vezamnje tablica metodom query - hack
+        // A. Gupta, Doing a table join in Android without using rawQuery
+        //https://blog.championswimmer.in/2015/12/doing-a-table-join-in-android-without-using-rawquery/
+
+        // Kada se tablice vežu, onda je jednostavnije koristiti metodu rawQuery
         //String upit = "SELECT korisnik, ime FROM KORISNIK WHERE _id = ?";
         //Cursor c = db.rawQuery(upit, new String[] {id.getText().toString()});
         // Pomoću query metode
@@ -135,18 +138,19 @@ public class AzuriranjeActivity extends AppCompatActivity {
             korisnik.setText("");
             ime.setText("");
         }
+        c.close();
         db.close();
     }
     // Čitanje zapisa iz baze za zadanu šifru korisnika
     public void citajKorisnika(View v){
         // provjera unesenih podataka
-        if (korisnik.getText().toString() == null || korisnik.getText().toString().length() < 1){
+        if (korisnik.getText().toString().length() < 1){
             Toast.makeText(con,"Morate unijeti korisnika",Toast.LENGTH_SHORT).show();
             return;
         }
         KorisniciHelper databaseHelper = new KorisniciHelper(con);
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
-        TextView id = (TextView) findViewById(R.id.id);
+        TextView id = findViewById(R.id.id);
         String upit = "SELECT _id, korisnik, ime FROM KORISNIK WHERE korisnik = ?";
         Cursor c = db.rawQuery(upit, new String[] {korisnik.getText().toString()});
         if ((c != null) && (c.getCount() > 0)) {
@@ -159,6 +163,7 @@ public class AzuriranjeActivity extends AppCompatActivity {
             id.setText("");
             ime.setText("");
         }
+        c.close();
         db.close();
     }
 

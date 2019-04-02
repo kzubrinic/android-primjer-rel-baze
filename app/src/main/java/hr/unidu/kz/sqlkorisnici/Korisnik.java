@@ -5,34 +5,34 @@ public class Korisnik {
     private String korisnik;
     private String ime;
 
-    public Korisnik() {}
+    Korisnik() {}
     public Korisnik(int id, String korisnik, String ime) {
         this.id = id;
         this.korisnik = korisnik;
         this.ime = ime;
     }
 
-    public int getId() {
+    int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    void setId(int id) {
         this.id = id;
     }
 
-    public String getKorisnik() {
+    String getKorisnik() {
         return korisnik;
     }
 
-    public void setKorisnik(String korisnik) {
+    void setKorisnik(String korisnik) {
         this.korisnik = korisnik;
     }
 
-    public String getIme() {
+    String getIme() {
         return ime;
     }
 
-    public void setIme(String ime) {
+    void setIme(String ime) {
         this.ime = ime;
     }
 

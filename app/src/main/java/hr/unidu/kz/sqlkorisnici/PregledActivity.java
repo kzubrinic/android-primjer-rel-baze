@@ -36,6 +36,7 @@ public class PregledActivity extends ListActivity {
         PregledAdapter adapter = new PregledAdapter(this, c);
         // adapter se povezuje s listom
         setListAdapter(adapter);
+        c.close();
         db.close();
     }
 }
