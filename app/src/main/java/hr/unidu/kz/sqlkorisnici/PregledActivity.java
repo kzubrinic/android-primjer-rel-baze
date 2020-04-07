@@ -10,6 +10,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class PregledActivity extends ListActivity {
+    private SQLiteDatabase db;
+    private Cursor c;
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -30,12 +32,17 @@ public class PregledActivity extends ListActivity {
     }
     private void napuniPodatke(){
         KorisniciHelper databaseHelper = new KorisniciHelper(this);
-        SQLiteDatabase db = databaseHelper.getWritableDatabase();
-        Cursor c = db.query("KORISNIK", new String[] {"_id","korisnik", "ime"}, null, null, null, null, "korisnik");
+        db = databaseHelper.getWritableDatabase();
+        c = db.query("KORISNIK", new String[] {"_id","korisnik", "ime"}, null, null, null, null, "korisnik");
         c.moveToFirst(); // skoči na prvi redak
         PregledAdapter adapter = new PregledAdapter(this, c);
         // adapter se povezuje s listom
         setListAdapter(adapter);
+
+    }
+    @Override
+    protected void onStop (){
+        super.onStop();
         c.close();
         db.close();
     }

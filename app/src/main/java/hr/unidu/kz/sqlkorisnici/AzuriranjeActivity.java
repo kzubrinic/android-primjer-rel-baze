@@ -6,8 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -116,7 +116,7 @@ public class AzuriranjeActivity extends AppCompatActivity {
         KorisniciHelper databaseHelper = new KorisniciHelper(con);
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
         TextView id = findViewById(R.id.id);
-        // Vezamnje tablica metodom query - hack
+        // Vezanje tablica metodom query - hack
         // A. Gupta, Doing a table join in Android without using rawQuery
         //https://blog.championswimmer.in/2015/12/doing-a-table-join-in-android-without-using-rawquery/
 
